@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -153,8 +153,8 @@ MESSAGE_TAGS = {
 }
 
 
-PAYSTACK_PUBLIC_KEY = 'pk_live_b3f5b22f5f93f1e59bac664ac62369231e4e1cb8' #paystack secret key
-PAYSTACK_PRIVATE_KEY = 'sk_live_1d84418fd027f5a199a70bc2d3f1cbbed61d90e0' # paystack public key
+PAYSTACK_PUBLIC_KEY = '' #paystack secret key
+PAYSTACK_PRIVATE_KEY = '' # paystack public key
 
 
 STRIPE_PUBLISHABLE_KEY = "pk_test_51J8DT3INBZ9p0pqiNlQLtzWQgmerA5TKn2bLcQzYl03pqAp8D4GSynpKHycrYhUEhBXuxCpsH6Cea97ltHPzlwdm009QpZENSU"
