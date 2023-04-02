@@ -243,6 +243,7 @@
                                                     <div class="pr-lg-10">
                                                         <div class="mb-2"><a href="{% url 'product_by_category' product.category.cat_slug %}" class="font-size-12 text-gray-5 category-style-01 v-02 bg-color-b">{{ product.category }}</a></div>
                                                         <h5 class="mb-2 product-item__title"><a href="{% url 'product_detail' product.category.cat_slug product.slug %}" class="text-blue font-weight-bold">{{ product }}</a></h5>
+                                                        <div class="mb-2"><a href="" class="font-size-12 text-gray-5 category-style-01 v-02 bg-color-b">{{ product.seller_name }}</a></div>
                                                         <div class="prodcut-price mb-2 d-md-none">
                                                             <div class="text-warning mr-2">
                                                                     <span>
@@ -255,7 +256,7 @@
                                                                     <span>{{ product.countReview }}</span> Reviews
                                                                 </div>
                                                             <div class="text-gray-100">
-                                                                <del class="price-old">₦ 1980</del>
+                                                                <del class="price-old">₦{{ product.old_price }}</del>
                                                                 ₦{{product.price}}
                                                             </div>
                                                             <div class="prodcut-add-cart">
@@ -297,7 +298,7 @@
                                                     <div class="mb-3">
                                                         <div class="prodcut-price mb-2">
                                                             <div class="text-gray-100">
-                                                                <del class="price-old">₦ 1980</del><br>
+                                                                <del class="price-old">₦{{ product.old_price }}</del><br>
                                                                 ₦{{product.price}}
                                                             </div>
                                                         </div><br>

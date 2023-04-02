@@ -83,3 +83,15 @@ class UserProfile(models.Model):
 
     def full_address(self):
         return f'{self.address_line_1}, {self.city}, {self.state}'
+
+
+ 
+class Contact(models.Model):
+    fullname = models.CharField(max_length=20, null=True)
+    phonenumber = models.CharField(max_length=11, null=True)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.email

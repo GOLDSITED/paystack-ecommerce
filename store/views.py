@@ -9,12 +9,20 @@ from django.core.paginator import *
 from.forms import Reviewform
 from orders.models import OrderProduct
 from accounts.models import UserProfile
+from django.views.generic.edit import UpdateView,DeleteView
+from . forms import ProductForm
 
+def seller_profile(request,id):
+    seller = User.objects.get(id=id,)
+    context ={
+        'seller':seller,
+    }
+    return render(request, 'store/seller_profile.html',context)
 
 def storeview(request, cat_slug=None):
     category = None
     products =None
-    prduct_count = 0
+    product_count = 0
     categories = None
     if cat_slug != None:
         categories = get_object_or_404(Category, cat_slug=cat_slug)
@@ -32,7 +40,9 @@ def storeview(request, cat_slug=None):
     context = {
         'products': paged_products,
         'product_count': product_count,
-        'category': categories
+        'category': categories,
+        
+        
     }
     return render(request, 'store/store.html', context)
 
@@ -108,3 +118,47 @@ def reviewview(request, product_id):
                 data.save()
                 messages.success(request, 'Thank you, review has been submitted.')
                 return redirect(url)
+
+
+
+def addproducts(request):
+    form = ProductForm()
+
+    if request.method =='POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid:
+            form.save()
+            return redirect('store')
+    else:
+        form = ProductForm()
+
+    context = {
+        "form":form
+    }
+    return render(request, 'store/addproducts.html', context)
+
+def delete_product(request,id):
+    product = Product.objects.get(id=id)
+    context={
+        'product':product,
+    }
+    if request.method =='POST':
+        product.delete()
+        return redirect('store')
+    return render (request,'store/delete.html',context)
+
+
+def my_listings(request):
+        products = Product.objects.filter(seller_name=request.user)
+        context ={
+            'products':products,
+        }
+        return render(request,'store/mylistings.html',context)
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ['category','product_name','slug','description','product_specifications','price','old_price','is_available','image']
+    template_name = 'store/product_update.html'
+
+

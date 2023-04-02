@@ -150,7 +150,7 @@ def remove_item(request, product_id, cart_item_id):
 
 def cart(request, total=0, quantity=0, cart_items=None):
     try:
-        shipping_fee = (2 * total) / 100
+        shipping_fee = (10 * total) / 100
         grand_total = total + shipping_fee
         if request.user.is_authenticated:
             cart_items = CartItem.objects.filter(user= request.user, is_active=True)
@@ -160,7 +160,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
         for cart_item in cart_items:
             total += (cart_item.product.price*cart_item.quantity)
             quantity += cart_item.quantity
-        shipping_fee = (2*total)/100
+        shipping_fee = (10*total)/100
         grand_total = total + shipping_fee
     except ObjectDoesNotExist:
         pass
@@ -176,7 +176,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
 @login_required(login_url='login')
 def checkoutview(request, total=0, quantity=0, cart_items=None):
     current_user = UserProfile.objects.get(user=request.user)
-    shipping_fee = (2 * total) / 100
+    shipping_fee = (10 * total) / 100
     grand_total = total + shipping_fee
 
     try:
@@ -188,7 +188,7 @@ def checkoutview(request, total=0, quantity=0, cart_items=None):
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
-            shipping_fee = (2 * total) / 100
+            shipping_fee = (10 * total) / 100
             grand_total = total + shipping_fee
     except ObjectDoesNotExist:
         pass

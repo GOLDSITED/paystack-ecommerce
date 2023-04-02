@@ -70,13 +70,13 @@
                                 </div>
                                 <h5 class="mb-2 font-size-14 text-center mx-auto max-width-180 text-lh-18"><a href="../shop/single-product-fullwidth.html" class="text-blue font-weight-bold">{{product.product}}</a></h5>
                                 <div class="d-flex align-items-center justify-content-center mb-3">
-                                    <del class="font-size-18 mr-2 text-gray-2">₦20,00</del>
+                                    <del class="font-size-18 mr-2 text-gray-2">₦{{ product.product.old_price }}</del>
                                     <ins class="font-size-30 text-red text-decoration-none">₦{{ product.product.price }}</ins>
                                 </div>
                                 <div class="mb-3 mx-2">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="">Availavle: <strong>6</strong></span>
-                                        <span class="">Already Sold: <strong>28</strong></span>
+                                        <span class="">Available: <strong>{{ product.product.is_available }}</strong></span>
+                                        <span class="">Already Sold: <strong>{{ product.product.stock }}</strong></span>
                                     </div>
                                     <div class="rounded-pill bg-gray-3 height-20 position-relative">
                                         <span class="position-absolute left-0 top-0 bottom-0 rounded-pill w-30 bg-primary"></span>
@@ -85,7 +85,7 @@
                                 <div class="mb-2">
                                     <h6 class="font-size-15 text-gray-2 text-center mb-3">Hurry Up! Offer ends in:</h6>
                                     <div class="js-countdown d-flex justify-content-center"
-                                        data-end-date="2022/07/31"
+                                        data-end-date="2023/10/20"
                                         data-hours-format="%H"
                                         data-minutes-format="%M"
                                         data-seconds-format="%S">

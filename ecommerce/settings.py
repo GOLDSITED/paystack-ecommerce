@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'orders',
     'admin_honeypot',
     'django_simple_coupons',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -151,22 +152,10 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # this email will be used to send emails
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # host email password required
-# now sign in with your host gmail account in your browser
-# open following link and turn it ON
-# https://myaccount.google.com/lesssecureapps
-# otherwise you will get SMTPAuthenticationError at /contactus
-# this process is required because google blocks apps authentication by default
-# EMAIL_RECEIVING_USER =  # email on which you will receive messages sent from website
+
+PAYSTACK_PUBLIC_KEY = 'pk_live_b3f5b22f5f93f1e59bac664ac62369231e4e1cb8' #paystack secret key
+PAYSTACK_PRIVATE_KEY = 'sk_live_1d84418fd027f5a199a70bc2d3f1cbbed61d90e0' # paystack public key
 
 
-PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY')
-PAYSTACK_PRIVATE_KEY = config('PAYSTACK_PRIVATE_KEY')
-
-STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
-STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = "pk_test_51J8DT3INBZ9p0pqiNlQLtzWQgmerA5TKn2bLcQzYl03pqAp8D4GSynpKHycrYhUEhBXuxCpsH6Cea97ltHPzlwdm009QpZENSU"
+STRIPE_SECRET_KEY = "sk_test_51J8DT3INBZ9p0pqib3XnYuV3qavQR6yv6rHI9cnhLr8r42n7m2iTuAsY73ebaTDEdFiAF2LZRmKUNYS28ir5AleC00RXRVGBB7"

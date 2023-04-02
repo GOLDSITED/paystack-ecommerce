@@ -1,7 +1,8 @@
 from django import forms
 from .models import Account, UserProfile
 from django.contrib.auth.password_validation import validate_password
-
+from .models import Contact
+from django.forms import ModelForm
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
@@ -54,3 +55,8 @@ class UserProfileForm(forms.ModelForm):
         super(UserProfileForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
+
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact
+        fields = '__all__'

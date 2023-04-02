@@ -8,6 +8,7 @@ from cart.models import Cart, CartItem
 from cart.views import _cart_id
 import requests
 from orders.models import Order, OrderProduct
+from .forms import ContactForm
 
 # USer Account Verification Imports
 
@@ -150,7 +151,7 @@ def activateview(request, uidb64, token):
 def dashboardview (request):
     orders = Order.objects.order_by('created_at').filter(user_id=request.user.id, is_ordered=True)
     orders_count = orders.count()
-    userprofile = UserProfile.objects.get(user_id=request.user.id)
+    userprofile = UserProfile.objects.get_or_create(user_id=request.user.id)
     context = {
         'orders_count': orders_count,
         'userprofile': userprofile
@@ -285,4 +286,24 @@ def orderdetailview(request, order_id):
         'subtotal': subtotal
     }
     return render(request, 'accounts/order-detail.html', context)
+
+
+
+def seller_profile(request,id):
+    seller = User.objects.get(id=id,)
+    context ={
+        'seller':seller,
+    }
+    return render(request, 'accounts/seller_profile.html',context)
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'store.html')
+    form = ContactForm()
+    context = {'form': form}
+    return render(request, 'accounts/contact.html', context)
 

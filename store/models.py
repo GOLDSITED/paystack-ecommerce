@@ -7,6 +7,7 @@ from accounts.models import Account, UserProfile
 
 
 class Product(models.Model):
+    seller_name = models.ForeignKey(Account, on_delete=models.CASCADE,default=1)
     product_name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, max_length=200)
     description = models.TextField(max_length=100000, blank=True)
@@ -15,6 +16,7 @@ class Product(models.Model):
     key_spec2 = models.CharField(max_length=1000, blank=True)
     key_spec3 = models.CharField(max_length=1000, blank=True)
     key_spec4 = models.CharField(max_length=1000, blank=True)
+    old_price = models.FloatField(default=0)
     price = models.IntegerField()
     image = models.ImageField()
     stock = models.IntegerField()
